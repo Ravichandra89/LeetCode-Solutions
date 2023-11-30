@@ -1,0 +1,43 @@
+#include<vector>
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+
+        if(n == 0){
+            return;
+        }
+
+        vector<bool> setRow(n,false);
+        vector<bool> setCol(m,false);
+
+        // Iterate through the matirx
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(matrix[i][j] == 0){
+                    setRow[i] = true;
+                    setCol[j] = true;
+                }
+            }
+        }
+
+        // Make zero the rows
+        for(int i=0;i<n;i++){
+            if(setRow[i]){
+                for(int k=0;k<m;k++){
+                    matrix[i][k] = 0;
+                }
+            }
+        }
+
+        // Make zero the columns
+        for(int j=0;j<m;j++){
+            if(setCol[j]){
+                for(int i=0;i<n;i++){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+};
